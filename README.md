@@ -1,4 +1,4 @@
-# iOS Custom App - Mobile Craigslist
+# iOS Custom App - Craigslist
 
 ## Description
 
