@@ -48,9 +48,8 @@ class SubcategoryTableViewController: UIViewController {
     }
     */
     
-    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue) {}
+    @IBAction func unwindFromLogIn(segue: UIStoryboardSegue) {}
 
     @IBAction func loginProfileButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "subcategoryTableToLogIn", sender: nil)

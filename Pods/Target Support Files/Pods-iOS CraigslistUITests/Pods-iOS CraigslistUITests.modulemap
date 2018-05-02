@@ -1,0 +1,6 @@
+framework module Pods_iOS_CraigslistUITests {
+  umbrella header "Pods-iOS CraigslistUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

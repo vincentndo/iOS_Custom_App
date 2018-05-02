@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
@@ -16,6 +18,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 class CategoryCollectionViewController: UIViewController {
 
     @IBOutlet weak var categoryCollection: UICollectionView!
+    @IBOutlet weak var loginProfileButton: UIButton!
+    
+    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue) {}
+    @IBAction func unwindFromLogIn(segue: UIStoryboardSegue) {}
     
     var selectedIndexPath: IndexPath?
     
@@ -26,14 +32,27 @@ class CategoryCollectionViewController: UIViewController {
 //        categoryCollection.dataSource = self
 //        categoryCollection.delegate = self
         self.title = "Craigslist"
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print("Sign out error \(signOutError)")
+        }
+        
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        // Hide the Navigation Bar in this view
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Hide the Navigation Bar in this view
 //        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-//    }
+        
+        let user = Auth.auth().currentUser
+        if user == nil {
+            loginProfileButton.setTitle("Login", for: .normal)
+        } else {
+            loginProfileButton.setTitle("Profile", for: .normal)
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,10 +70,6 @@ class CategoryCollectionViewController: UIViewController {
         if let identifier = segue.identifier, identifier == "categoryCollectionToSubcategoryTable", let dest = segue.destination as? SubcategoryTableViewController {
             dest.category = categoryArray[self.selectedIndexPath!.item]
         }
-    }
-    
-    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue) {
-        
     }
 
     @IBAction func loginProfileButtonPressed(_ sender: Any) {

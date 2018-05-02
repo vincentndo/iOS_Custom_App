@@ -7,9 +7,36 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
-
+    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func logInButtonPressed(_ sender: Any) {
+        guard let username = self.usernameTextField.text else { return }
+        guard let password = self.passwordTextField.text else { return }
+        
+        if username == "" || password == "" {
+            let alert = UIAlertController(title: "Log In Error", message: "Please enter username and password", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        } else {
+            Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
+                if error == nil {
+                    self.performSegue(withIdentifier: "unwindFromLogInToContentViews", sender: nil)
+                } else {
+                    let alert = UIAlertController(title: "Log In Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -32,16 +32,16 @@
         <!--Log In-->
         <scene sceneID="C4U-pf-Dgz">
             <objects>
-                <viewController id="Xt8-dA-kGU" customClass="LogInViewController" customModule="iOS_Craigslist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Xt8-dA-kGU" customClass="LogInViewController" customModule="iOS_Craigslist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uuZ-cd-1QZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SKr-Ng-E2p">
-                                <rect key="frame" x="67" y="51" width="240" height="128"/>
+                                <rect key="frame" x="67" y="64" width="240" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qja-QO-ZIA">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or Email Adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qja-QO-ZIA">
                                 <rect key="frame" x="95" y="269" width="185" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -59,6 +59,9 @@
                                 <rect key="frame" x="166" y="371" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="logInButtonPressed:" destination="Xt8-dA-kGU" eventType="touchUpInside" id="In4-Q7-tk9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paf-AT-GMy">
                                 <rect key="frame" x="230" y="410" width="55" height="30"/>
@@ -82,33 +85,87 @@
                     <navigationItem key="navigationItem" title="Log In" id="bGM-PW-tGe" userLabel="Log In">
                         <barButtonItem key="backBarButtonItem" title=" " id="yRa-SX-Tlr"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passwordTextField" destination="e9l-jO-LYK" id="cvg-Px-NCw"/>
+                        <outlet property="usernameTextField" destination="qja-QO-ZIA" id="Y9B-ah-0Bc"/>
+                        <segue destination="qqz-6F-ydf" kind="unwind" identifier="unwindFromLogInToContentViews" unwindAction="unwindFromLogInSegue:" id="mhJ-WK-dXH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vd-FW-Dag" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qqz-6F-ydf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="410" y="-637"/>
+            <point key="canvasLocation" x="408.80000000000001" y="-637.33133433283365"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="qQF-3R-RM2">
             <objects>
-                <viewController id="OpI-0L-lAW" customClass="SignUpViewController" customModule="iOS_Craigslist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="OpI-0L-lAW" customClass="SignUpViewController" customModule="iOS_Craigslist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7ci-fL-O54">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFc-cQ-DUE">
+                                <rect key="frame" x="67" y="64" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtt-W8-UQC">
+                                <rect key="frame" x="100" y="245" width="174" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sfG-Kf-6sW">
+                                <rect key="frame" x="100" y="299" width="174" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xcR-cM-WLn">
+                                <rect key="frame" x="100" y="359" width="174" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qct-6U-Ffz">
+                                <rect key="frame" x="100" y="421" width="174" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjF-IK-6mz">
+                                <rect key="frame" x="160" y="481" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="OpI-0L-lAW" eventType="touchUpInside" id="Fx7-by-06q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bDa-MW-fvs"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="Y2F-8q-zS5">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="f3e-OA-hTC">
                             <connections>
-                                <segue destination="Ub6-Hz-aml" kind="unwind" unwindAction="unwindFromSignUpWithSegue:" id="2A5-7d-R4m"/>
+                                <segue destination="Ub6-Hz-aml" kind="unwind" identifier="unwindFromSignUpToContentViews" unwindAction="unwindFromSignUpWithSegue:" id="2A5-7d-R4m"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailAddressTextField" destination="sfG-Kf-6sW" id="qKH-u5-G3y"/>
+                        <outlet property="passwordConfirmedTextField" destination="qct-6U-Ffz" id="YZ7-xu-l1j"/>
+                        <outlet property="passwordTextField" destination="xcR-cM-WLn" id="Ze2-Nj-FeX"/>
+                        <outlet property="usernameTextField" destination="gtt-W8-UQC" id="dSd-MY-E2v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtL-4M-jsQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ub6-Hz-aml" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="-637"/>
+            <point key="canvasLocation" x="1320.8" y="-637.33133433283365"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ApQ-qj-OWd">
@@ -204,6 +261,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryCollection" destination="Wm5-bn-6f4" id="XAq-Z7-qJ3"/>
+                        <outlet property="loginProfileButton" destination="xVH-dR-105" id="IfZ-6r-s5l"/>
                         <segue destination="Pnq-B7-oeb" kind="show" identifier="categoryCollectionToSubcategoryTable" id="mNC-8D-YBK"/>
                         <segue destination="Xt8-dA-kGU" kind="show" identifier="categoryCollectionToLogIn" id="Ltt-MK-XzF"/>
                     </connections>
@@ -406,6 +464,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jib-d4-yoY"/>
-        <segue reference="Ltt-MK-XzF"/>
+        <segue reference="pk7-mY-d1J"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -26,7 +26,6 @@ class CategoryTableViewController: UIViewController {
         categoryTable.delegate = self
 //        Category.loadData()
         self.title = "Craigslist"
-        print("here")
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,9 +44,8 @@ class CategoryTableViewController: UIViewController {
     }
     */
     
-    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindFromSignUp(segue: UIStoryboardSegue) {}
+    @IBAction func unwindFromLogIn(segue: UIStoryboardSegue) {}
     
     @IBAction func loginProfileButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "categoryTableToLogIn", sender: nil)
